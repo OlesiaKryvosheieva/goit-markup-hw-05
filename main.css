@@ -279,6 +279,10 @@ h3 {
   position: relative;
 }
 
+.our-work-pic {
+  display: block;
+}
+
 .our-work-text {
   position: absolute;
   display: block;
@@ -364,31 +368,28 @@ h3 {
 
 .crew-link {
   display: flex;
-  padding: 12px 12px;
   justify-content: center;
-
+  align-items: center;
+  border-radius: 50%;
   width: 44px;
   height: 44px;
 
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    border-radius 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .social-media {
   fill: var(--icon-color);
   display: block;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .crew-link:focus,
 .crew-link:hover {
   background-color: var(--accent-color);
-  border-radius: 50%;
-  fill: #ffffff;
 }
 
-.crew-link:focus svg,
-.crew-link:hover svg {
+.crew-link:focus .social-media,
+.crew-link:hover .social-media {
   fill: #ffffff;
 }
 
@@ -422,8 +423,7 @@ h3 {
   border: 1px solid var(--icon-color);
 
   border-radius: 4px;
-  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .clients-item:not(:last-child) {
@@ -433,19 +433,17 @@ h3 {
 .clients-icon {
   fill: var(--icon-color);
   display: block;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .clients-link:focus,
 .clients-link:hover {
   border: 1px solid var(--accent-color);
-  outline: none;
 }
 
-.clients-link:focus svg,
-.clients-link:hover svg {
+.clients-link:focus .clients-icon,
+.clients-link:hover .clients-icon {
   fill: var(--accent-color);
-  border: var(--accent-color);
-  outline: none;
 }
 
 /* Footer */
@@ -715,21 +713,24 @@ h3 {
   overflow: hidden;
 }
 
-.portfolio-thumb::after {
-  content: "";
+.portfolio-overlay {
+  position: absolute;
   background-color: rgba(33, 150, 243, 0.9);
   width: 100%;
   height: 100%;
-  position: absolute;
+
   top: 0;
   left: 0;
-  z-index: 1;
 
   transform: translateY(100%);
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.portfolio .link:hover .portfolio-thumb::after {
+.portfolio .link:hover .portfolio-overlay {
+  transform: translateY(0);
+}
+
+.portfolio .link:focus .portfolio-overlay {
   transform: translateY(0);
 }
 
@@ -747,13 +748,5 @@ h3 {
   width: 100%;
   top: 50%;
   left: 50%;
-
-  z-index: 2;
-
-  transform: translate(-50%, -50%) translateY(100%);
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.portfolio .link:hover .portfolio-meta {
-  transform: translate(-50%, -50%) translateY(0);
+  transform: translate(-50%, -50%);
 }
